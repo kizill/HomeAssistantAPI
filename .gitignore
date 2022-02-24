@@ -13,6 +13,9 @@ venv/
 # Megalinter
 report/
 
+# Test Server
+server/
+
 # Repl.it
 .replit
 .breakpoints

@@ -10,7 +10,29 @@ on:
       - dev
   workflow_dispatch:
 
+env:
+  HOMEASSISTANT_TOKEN: ${{ secrets.HOMEASSISTANT_TOKEN}}
+
 jobs:
+  test_code:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Python
+        uses: actions/setup-python@v2
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Testing Environment
+        run: scripts/build_testing_env
+      - name: Run Tests
+        run: |
+            # Enter Testing Environment
+            . server/venv/bin/activate
+
+            # Start Server
+            hass -c tests/config
+
+            # Run Tests
+            pytest -v tests
   code_styling:
     runs-on: ubuntu-latest
     steps:

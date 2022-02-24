@@ -1,0 +1,3 @@
+rm -rf server
+git clone https://github.com/GrandMoff100/homeassistant-core server
+server/script/setup
